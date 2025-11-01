@@ -1,0 +1,397 @@
+{
+  "name": "GeekCoders_LLM_Job",
+  "email_notifications": {
+    "no_alert_for_skipped_runs": false
+  },
+  "webhook_notifications": {},
+  "timeout_seconds": 0,
+  "max_concurrent_runs": 1,
+  "tasks": [
+    {
+      "task_key": "Ingest_Bonze_Appointment_Data",
+      "run_if": "ALL_SUCCESS",
+      "notebook_task": {
+        "notebook_path": "/Workspace/GeekCoders_LLM/GeekCoders_LLM/Raw/Ingest S3 bucket to Bronze Layer",
+        "base_parameters": {
+          "catalog_name": "geekcoders_dev",
+          "schema_name": "bronze",
+          "table_name": "appointment_data",
+          "s3_bucket": "s3://healthcares3/appointment_data/"
+        },
+        "source": "WORKSPACE"
+      },
+      "job_cluster_key": "Job_cluster",
+      "timeout_seconds": 0,
+      "email_notifications": {},
+      "webhook_notifications": {}
+    },
+    {
+      "task_key": "Appoitment_Cleaned_Notebook",
+      "depends_on": [
+        {
+          "task_key": "Ingest_Bonze_Appointment_Data"
+        }
+      ],
+      "run_if": "ALL_SUCCESS",
+      "notebook_task": {
+        "notebook_path": "/Workspace/GeekCoders_LLM/GeekCoders_LLM/Cleaned/Appointment_Cleaned",
+        "base_parameters": {
+          "catalog_name": "geekcoders_dev",
+          "schema_name": "bronze"
+        },
+        "source": "WORKSPACE"
+      },
+      "job_cluster_key": "Job_cluster",
+      "timeout_seconds": 0,
+      "email_notifications": {},
+      "webhook_notifications": {}
+    },
+    {
+      "task_key": "Ingest_Bonze_Lab_Data",
+      "run_if": "ALL_SUCCESS",
+      "notebook_task": {
+        "notebook_path": "/Workspace/GeekCoders_LLM/GeekCoders_LLM/Raw/Ingest S3 bucket to Bronze Layer",
+        "base_parameters": {
+          "catalog_name": "geekcoders_dev",
+          "schema_name": "bronze",
+          "table_name": "lab_results_data",
+          "s3_bucket": "s3://healthcares3/lab_results_data/"
+        },
+        "source": "WORKSPACE"
+      },
+      "job_cluster_key": "Job_cluster",
+      "timeout_seconds": 0,
+      "email_notifications": {},
+      "webhook_notifications": {}
+    },
+    {
+      "task_key": "Ingest_Bonze_Medical_History_Data",
+      "run_if": "ALL_SUCCESS",
+      "notebook_task": {
+        "notebook_path": "/Workspace/GeekCoders_LLM/GeekCoders_LLM/Raw/Ingest S3 bucket to Bronze Layer",
+        "base_parameters": {
+          "catalog_name": "geekcoders_dev",
+          "schema_name": "bronze",
+          "table_name": "medical_history_data",
+          "s3_bucket": "s3://healthcares3/medical_history_data/"
+        },
+        "source": "WORKSPACE"
+      },
+      "job_cluster_key": "Job_cluster",
+      "timeout_seconds": 0,
+      "email_notifications": {},
+      "webhook_notifications": {}
+    },
+    {
+      "task_key": "Ingest_Bonze_Medication_Data",
+      "run_if": "ALL_SUCCESS",
+      "notebook_task": {
+        "notebook_path": "/Workspace/GeekCoders_LLM/GeekCoders_LLM/Raw/Ingest S3 bucket to Bronze Layer",
+        "base_parameters": {
+          "catalog_name": "geekcoders_dev",
+          "schema_name": "bronze",
+          "table_name": "medication_data",
+          "s3_bucket": "s3://healthcares3/medication_data/"
+        },
+        "source": "WORKSPACE"
+      },
+      "job_cluster_key": "Job_cluster",
+      "timeout_seconds": 0,
+      "email_notifications": {},
+      "webhook_notifications": {}
+    },
+    {
+      "task_key": "Ingest_Bonze_Patient_Data",
+      "run_if": "ALL_SUCCESS",
+      "notebook_task": {
+        "notebook_path": "/Workspace/GeekCoders_LLM/GeekCoders_LLM/Raw/Ingest S3 bucket to Bronze Layer",
+        "base_parameters": {
+          "catalog_name": "geekcoders_dev",
+          "schema_name": "bronze",
+          "table_name": "patient_data",
+          "s3_bucket": "s3://healthcares3/patients_data/"
+        },
+        "source": "WORKSPACE"
+      },
+      "job_cluster_key": "Job_cluster",
+      "timeout_seconds": 0,
+      "email_notifications": {},
+      "webhook_notifications": {}
+    },
+    {
+      "task_key": "Ingest_Bonze_Sympton_Data",
+      "run_if": "ALL_SUCCESS",
+      "notebook_task": {
+        "notebook_path": "/Workspace/GeekCoders_LLM/GeekCoders_LLM/Raw/Ingest S3 bucket to Bronze Layer",
+        "base_parameters": {
+          "catalog_name": "geekcoders_dev",
+          "schema_name": "bronze",
+          "table_name": "symptons_data",
+          "s3_bucket": "s3://healthcares3/symptons_data/"
+        },
+        "source": "WORKSPACE"
+      },
+      "job_cluster_key": "Job_cluster",
+      "timeout_seconds": 0,
+      "email_notifications": {},
+      "webhook_notifications": {}
+    },
+    {
+      "task_key": "Lab_Result_Cleaned_Notebook",
+      "depends_on": [
+        {
+          "task_key": "Ingest_Bonze_Lab_Data"
+        }
+      ],
+      "run_if": "ALL_SUCCESS",
+      "notebook_task": {
+        "notebook_path": "/Workspace/GeekCoders_LLM/GeekCoders_LLM/Cleaned/Lab_Results_Cleaned",
+        "base_parameters": {
+          "catalog_name": "geekcoders_dev",
+          "schema_name": "bronze"
+        },
+        "source": "WORKSPACE"
+      },
+      "job_cluster_key": "Job_cluster",
+      "timeout_seconds": 0,
+      "email_notifications": {},
+      "webhook_notifications": {}
+    },
+    {
+      "task_key": "Medical_History_Cleaned_Notebook",
+      "depends_on": [
+        {
+          "task_key": "Ingest_Bonze_Medical_History_Data"
+        }
+      ],
+      "run_if": "ALL_SUCCESS",
+      "notebook_task": {
+        "notebook_path": "/Workspace/GeekCoders_LLM/GeekCoders_LLM/Cleaned/Medical_History_Cleaned",
+        "base_parameters": {
+          "catalog_name": "geekcoders_dev",
+          "schema_name": "bronze"
+        },
+        "source": "WORKSPACE"
+      },
+      "job_cluster_key": "Job_cluster",
+      "timeout_seconds": 0,
+      "email_notifications": {},
+      "webhook_notifications": {}
+    },
+    {
+      "task_key": "Midication_Data_Cleaned_Notebook",
+      "depends_on": [
+        {
+          "task_key": "Ingest_Bonze_Medication_Data"
+        }
+      ],
+      "run_if": "ALL_SUCCESS",
+      "notebook_task": {
+        "notebook_path": "/Workspace/GeekCoders_LLM/GeekCoders_LLM/Cleaned/Medication_History_Cleaned",
+        "base_parameters": {
+          "catalog_name": "geekcoders_dev",
+          "schema_name": "bronze"
+        },
+        "source": "WORKSPACE"
+      },
+      "job_cluster_key": "Job_cluster",
+      "timeout_seconds": 0,
+      "email_notifications": {},
+      "webhook_notifications": {}
+    },
+    {
+      "task_key": "Patient_Data_Cleaned_Notebook",
+      "depends_on": [
+        {
+          "task_key": "Ingest_Bonze_Patient_Data"
+        }
+      ],
+      "run_if": "ALL_SUCCESS",
+      "notebook_task": {
+        "notebook_path": "/Workspace/GeekCoders_LLM/GeekCoders_LLM/Cleaned/Patient_Cleaned",
+        "base_parameters": {
+          "catalog_name": "geekcoders_dev",
+          "schema_name": "bronze"
+        },
+        "source": "WORKSPACE"
+      },
+      "job_cluster_key": "Job_cluster",
+      "timeout_seconds": 0,
+      "email_notifications": {},
+      "webhook_notifications": {}
+    },
+    {
+      "task_key": "Symptoms_Data_Cleaned_Notebook",
+      "depends_on": [
+        {
+          "task_key": "Ingest_Bonze_Sympton_Data"
+        }
+      ],
+      "run_if": "ALL_SUCCESS",
+      "notebook_task": {
+        "notebook_path": "/Workspace/GeekCoders_LLM/GeekCoders_LLM/Cleaned/Symptons_Cleaned",
+        "base_parameters": {
+          "catalog_name": "geekcoders_dev",
+          "schema_name": "bronze"
+        },
+        "source": "WORKSPACE"
+      },
+      "job_cluster_key": "Job_cluster",
+      "timeout_seconds": 0,
+      "email_notifications": {},
+      "webhook_notifications": {}
+    },
+    {
+      "task_key": "Gold_Patient_Info",
+      "depends_on": [
+        {
+          "task_key": "Midication_Data_Cleaned_Notebook"
+        },
+        {
+          "task_key": "Patient_Data_Cleaned_Notebook"
+        },
+        {
+          "task_key": "Medical_History_Cleaned_Notebook"
+        },
+        {
+          "task_key": "Lab_Result_Cleaned_Notebook"
+        },
+        {
+          "task_key": "Symptoms_Data_Cleaned_Notebook"
+        },
+        {
+          "task_key": "Appoitment_Cleaned_Notebook"
+        }
+      ],
+      "run_if": "ALL_SUCCESS",
+      "notebook_task": {
+        "notebook_path": "/Workspace/GeekCoders_LLM/GeekCoders_LLM/Gold/Business_Logic_Master_Patient",
+        "base_parameters": {
+          "cataog_name": "geekcoders_dev",
+          "schema_name": "gold"
+        },
+        "source": "WORKSPACE"
+      },
+      "job_cluster_key": "Job_cluster",
+      "timeout_seconds": 0,
+      "email_notifications": {},
+      "webhook_notifications": {}
+    },
+    {
+      "task_key": "VS_Endpoint",
+      "depends_on": [
+        {
+          "task_key": "Gold_Patient_Info"
+        }
+      ],
+      "run_if": "ALL_SUCCESS",
+      "notebook_task": {
+        "notebook_path": "/Workspace/GeekCoders_LLM/GeekCoders_LLM/LLM_VS/VectorSearch",
+        "base_parameters": {
+          "catalog_name": "geekcoders_dev"
+        },
+        "source": "WORKSPACE"
+      },
+      "job_cluster_key": "Job_cluster",
+      "timeout_seconds": 0,
+      "email_notifications": {},
+      "webhook_notifications": {}
+    },
+    {
+      "task_key": "Embedding_Model_Endpoint",
+      "depends_on": [
+        {
+          "task_key": "VS_Endpoint"
+        }
+      ],
+      "run_if": "ALL_SUCCESS",
+      "notebook_task": {
+        "notebook_path": "/Workspace/GeekCoders_LLM/GeekCoders_LLM/LLM_VS/Embedding Model Endpoint",
+        "base_parameters": {
+          "catalog_name": "geekcoders_dev"
+        },
+        "source": "WORKSPACE"
+      },
+      "job_cluster_key": "Job_cluster",
+      "timeout_seconds": 0,
+      "email_notifications": {},
+      "webhook_notifications": {}
+    },
+    {
+      "task_key": "VS_Index_Table",
+      "depends_on": [
+        {
+          "task_key": "Embedding_Model_Endpoint"
+        }
+      ],
+      "run_if": "ALL_SUCCESS",
+      "notebook_task": {
+        "notebook_path": "/Workspace/GeekCoders_LLM/GeekCoders_LLM/LLM_VS/Create VS Index",
+        "base_parameters": {
+          "catalog_name": "geekcoders_dev"
+        },
+        "source": "WORKSPACE"
+      },
+      "job_cluster_key": "Job_cluster",
+      "timeout_seconds": 0,
+      "email_notifications": {},
+      "webhook_notifications": {}
+    },
+    {
+      "task_key": "LLM_Model_Serving",
+      "depends_on": [
+        {
+          "task_key": "VS_Index_Table"
+        }
+      ],
+      "run_if": "ALL_SUCCESS",
+      "notebook_task": {
+        "notebook_path": "/Workspace/GeekCoders_LLM/GeekCoders_LLM/LLM_VS/LLAMA EndPoint RAG",
+        "base_parameters": {
+          "catalog_name": "geekcoders_dev"
+        },
+        "source": "WORKSPACE"
+      },
+      "timeout_seconds": 0,
+      "email_notifications": {},
+      "webhook_notifications": {}
+    }
+  ],
+  "job_clusters": [
+    {
+      "job_cluster_key": "Job_cluster",
+      "new_cluster": {
+        "cluster_name": "",
+        "spark_version": "15.4.x-scala2.12",
+        "spark_conf": {
+          "spark.master": "local[*, 4]",
+          "spark.databricks.cluster.profile": "singleNode"
+        },
+        "aws_attributes": {
+          "first_on_demand": 1,
+          "availability": "SPOT_WITH_FALLBACK",
+          "zone_id": "us-west-2c",
+          "spot_bid_price_percent": 100,
+          "ebs_volume_count": 0
+        },
+        "node_type_id": "rd-fleet.xlarge",
+        "custom_tags": {
+          "ResourceClass": "SingleNode"
+        },
+        "spark_env_vars": {
+          "PYSPARK_PYTHON": "/databricks/python3/bin/python3"
+        },
+        "enable_elastic_disk": true,
+        "data_security_mode": "SINGLE_USER",
+        "runtime_engine": "STANDARD",
+        "num_workers": 0
+      }
+    }
+  ],
+  "queue": {
+    "enabled": true
+  },
+  "run_as": {
+    "service_principal_name": "913e102b-62bd-4a53-9937-aa66ef1191f5"
+  }
+}

@@ -1,1 +1,1 @@
-# databricks genai llm app using Vector Search
+# Databricks Genai LLM APP using Vector Search
